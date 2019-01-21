@@ -22,12 +22,12 @@ const App = () => {
     const ika = 10
 
     return (
-        <div>
+        <>
             <h1>Greetings earthlings!</h1>
             <Hello name="Arto" age={26 + 10} />
             <Hello name={nimi} age={ika} />
             <Footer />
-        </div>
+        </>
     )
 }
 
