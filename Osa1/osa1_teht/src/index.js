@@ -39,7 +39,7 @@ const App = () => {
     const exercises1 = 10
     const part2 = 'Tiedonvälitys propseilla'
     const exercises2 = 7
-    const part3 = 'Komponenttien tila'
+    const part3 = 'Komponenttien tilaa'
     const exercises3 = 14
 
     return (
