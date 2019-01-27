@@ -1,33 +1,37 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-const Display = ({ counter }) => <div>{counter}</div>
 
-const Button = ({ handleClick, text }) => (
-    <button onClick={handleClick}>
-        {text}
-    </button>
-)
+
 
 const App = (props) => {
-    const [counter, setCounter] = useState(0)
+    const [clicks, setClicks] = useState({
+        left: 0, right: 0
+    })
 
-    const setToValue = (value) => {
-        return () => {
-            setCounter(value)
-        }
+
+    const handleLeftClick = () => {
+        setClicks({ ...clicks, left: clicks.left + 1 })
     }
 
+    const handleRightClick = () => {
+        setClicks({ ...clicks, left: clicks.right + 1 })
+    }
+
+
     return (
-        <>
-            <Display counter={counter} />
-            <Button handleClick={() => setToValue(counter + 1)}
-                text='plus'
-            />
-            <Button handleClick={() => setToValue(0)}
-                text='zero'
-            />
-        </>
+        <div>
+            <div>
+                {clicks.left}
+                <button onClick={handleLeftClick}>
+                    vasen
+                </button>
+                <button onClick={handleRightClick}>
+                    oikea
+                </button>
+                {clicks.right}
+            </div>
+        </div>
     )
 }
 
