@@ -1,19 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Hello = (props) => {
+const Hello = ({ name, age }) => {
+    const bornYear = () => {
+        const yearNow = new Date().getFullYear()
+        return yearNow - age
+    }
+
     return (
         <div>
-            <p>Hellou {props.name}, you are {props.age} years old!</p>
+            <p>Hellou {name}, you are {age} years old!</p>
+            <p>And you were probably born {bornYear()}</p>
         </div>
 
-    )
-}
-const Footer = () => {
-    return (
-        <div>
-            Gretting app created by <a href="https://github.com/Qmppu842">Qmppu842</a>
-        </div>
     )
 }
 
@@ -26,7 +25,6 @@ const App = () => {
             <h1>Greetings earthlings!</h1>
             <Hello name="Arto" age={26 + 10} />
             <Hello name={nimi} age={ika} />
-            <Footer />
         </>
     )
 }
