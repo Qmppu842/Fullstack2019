@@ -2,54 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Course from './components/course'
 
-// const Header = ({ name }) => {
-//     return (
-//         <>
-//             <h1>{name}</h1>
-//         </>
-//     )
-// }
-// const Part = ({ part }) => {
-//     // console.log(part)
-//     return (
-//         <>
-//             <p>
-//                 {part.name} {part.exercises}
-//             </p>
-//         </>
-//     )
-// }
-// const Content = ({ content }) => {
-//     return (
-//         <>
-//             {content.map(parter => <Part key={Math.random()} part={parter} />)}
-//         </>
-//     )
-// }
-
-
-// const Total = ({ total }) => {
-//     const exes = total.map(part => part.exercises)
-//     const result = exes.reduce((joku, current, i, exes) => joku + current)
-
-//     return (
-//         <p>yhteensä {result} kurssia</p>
-//     )
-// }
-
-// const Course = ({ course }) => {
-//     return (
-//         <>
-//             <Header name={course.name} />
-//             <Content content={course.parts} />
-//             <Total total={course.parts} />
-//         </>
-//     )
-// }
-
 const App = () => {
     const courses = [
         {
+            id:1,
             name: 'Half Stack -sovelluskehitys',
             parts: [
                 {
@@ -71,6 +27,7 @@ const App = () => {
             ]
         },
         {
+            id: 2,
             name: 'Node.js',
             parts: [
                 {
@@ -85,7 +42,7 @@ const App = () => {
         }
     ]
 
-    const coursing = () =>  courses.map(course => <Course course={course} /> )
+    const coursing = () =>  courses.map(course => <Course key={course.id} course={course} /> )
        
     
     return (
