@@ -19,11 +19,19 @@ const App = () => {
 
     const addName = (event) => {
         event.preventDefault()
-        const person = {
-            name: newName
+        const isThisPersonAllreadyInThisList = persons.filter(person => {
+            return person.name === newName;
+        })
+        if (isThisPersonAllreadyInThisList.length !== 0){
+            alert(`${newName}  on jo käytössä valkaa jokin toinen`)
+        }else{
+
+            const person = {
+                name: newName
+            }
+            setPersons(persons.concat(person))
+            setNewName('')
         }
-        setPersons(persons.concat(person))
-        setNewName('')
 
     }
 
