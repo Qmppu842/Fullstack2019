@@ -18,24 +18,37 @@ const Part = ({ part }) => {
     )
 }
 const Content = ({ content }) => {
-    // console.log(content[1])
     return (
         <>
-            <Part part={content[0]} />
-            <Part part={content[1]} />
-            <Part part={content[2]} />
+            {content.map(parter => <Part key={Math.random()} part={parter}/>)}
         </>
     )
 }
-
 
 const Total = ({ total }) => {
+    console.log(total)
+    let result = 0
+    total.map(part => result +=part.exercises).reduce(() => (result))
+    console.log(result)
     return (
-        <>
-            <p>yhteensä {total[0].exercises + total[1].exercises + total[2].exercises} kurssia</p>
-        </>
+
+            // <p>yhteensä {total[0].exercises + total[1].exercises + total[2].exercises} kurssia</p>
+            <p>yhteensä {result} kurssia</p>
     )
 }
+
+const Totals = ({ total }) => {
+    console.log(total)
+    let result = 0
+    total.map(part => result +=part.exercises)
+    console.log(result)
+    return (
+
+            // <p>yhteensä {total[0].exercises + total[1].exercises + total[2].exercises} kurssia</p>
+            <p>yhteensä {result} kurssia</p>
+    )
+}
+
 
 const Course = ({ course }) => {
     return (
@@ -58,6 +71,10 @@ const App = () => {
             {
                 name: 'Tiedonvälitys propseilla',
                 exercises: 7
+            },
+            {
+                name: 'Komponenttien tilaa',
+                exercises: 14
             },
             {
                 name: 'Komponenttien tilaa',
