@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 
 const App = () => {
     const [persons, setPersons] = useState([
-        { name: 'Arto Hellas' }
+        { name: 'Arto Hellas', 
+        number: '050-12345678' }
     ])
     const [newName, setNewName] = useState('')
+    const [newNumber, setNewNumber] = useState('')
 
     const rows = () => {
         return (
             persons.map(person =>
-                <p key={person.name}>{person.name}</p>)
+                <p key={person.name}>{person.name} {person.number}</p>)
         )
     }
 
@@ -17,20 +19,27 @@ const App = () => {
         setNewName(event.target.value)
     }
 
-    const addName = (event) => {
+    const handleNumberInputChange = (event) => {
+        setNewNumber(event.target.value)
+    }
+
+
+    const addPerson = (event) => {
         event.preventDefault()
         const isThisPersonAllreadyInThisList = persons.filter(person => {
             return person.name === newName;
         })
-        if (isThisPersonAllreadyInThisList.length !== 0){
-            alert(`${newName}  on jo käytössä valkaa jokin toinen`)
-        }else{
+        if (isThisPersonAllreadyInThisList.length !== 0) {
+            alert(`${newName} on jo käytössä valkaa jokin toinen`)
+        } else {
 
             const person = {
-                name: newName
+                name: newName,
+                number: newNumber
             }
             setPersons(persons.concat(person))
             setNewName('')
+            setNewNumber('')
         }
 
     }
@@ -43,12 +52,20 @@ const App = () => {
             <form>
                 <div>
                     nimi:
-          <input
+                    <input
                         onChange={handleNameInputChange}
-                        value={newName} />
+                        value={newName}
+                    />
                 </div>
                 <div>
-                    <button type="submit" onClick={addName}>lisää</button>
+                    numero:
+                    <input
+                        onChange={handleNumberInputChange}
+                        value={newNumber}
+                    />
+                </div>
+                <div>
+                    <button type="submit" onClick={addPerson}>lisää</button>
                 </div>
             </form>
             <h2>Numerot</h2>
