@@ -1,63 +1,59 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
-const History = ({ allClicks }) => {
-    if (allClicks.length === 0) {
+const notes = [
+    {
+        id: 1,
+        content: 'HTML on helppoa',
+        date: '2019-01-10T17:30:31.098Z',
+        important: true
+    },
+    {
+        id: 2,
+        content: 'Selain pystyy suorittamaan vain javascriptiä',
+        date: '2019-01-10T18:39:34.091Z',
+        important: false
+    },
+    {
+        id: 3,
+        content: 'HTTP-protokollan tärkeimmät metodit ovat GET ja POST',
+        date: '2019-01-10T19:20:14.298Z',
+        important: true
+    }
+]
+
+const Note = ({ note }) => {
+    return (
+        <li>
+            {note.content}
+        </li>
+    )
+}
+
+const App = ({ notes }) => {
+
+    const rows = () => {
         return (
-            <div>
-                sovellusta käytetään nappeja painelemalla
-            </div>
+            notes.map(note =>
+                <Note
+                    key={note.id}
+                    note={note}
+                />
+            )
         )
     }
 
     return (
         <div>
-            näppäilyhistoria: {allClicks.join(' ')}
+            <h1>Muistiinpanot</h1>
+            <ul>
+                {rows()}
+            </ul>
         </div>
     )
 }
-
-const Button = ({ handleClick, text }) => {
-    console.log(handleClick)
-    return(
-    <button onClick={handleClick}>
-        {text}
-    </button>
-    )
-}
-
-const App = (props) => {
-    const [left, setLeft] = useState(0)
-    const [right, setRight] = useState(0)
-    const [allClicks, setAll] = useState([])
-
-
-    const handleLeftClick = () => {
-        setAll(allClicks.concat('L'))
-        setLeft(left + 1)
-    }
-
-    const handleRightClick = () => {
-        setAll(allClicks.concat('R'))
-        setRight(right + 1)
-    }
-
-
-    return (
-        <div>
-            <div>
-                {left}
-                <Button handleClick={handleLeftClick} text='vasen' />
-                <Button handleClick={handleRightClick} text='oikea' />
-                {right}
-                <History allClicks={allClicks} />
-            </div>
-        </div>
-    )
-}
-
 
 ReactDOM.render(
-    <App />,
+    <App notes={notes} />,
     document.getElementById('root')
-);
+)
