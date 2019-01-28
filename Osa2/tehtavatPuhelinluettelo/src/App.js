@@ -11,7 +11,7 @@ const App = () => {
     const [newNumber, setNewNumber] = useState('')
     const [fog, setFog] = useState('')
 
-const notInFog = persons.filter(person => person.name.toLowerCase().includes(fog) || person.number.includes(fog))
+    const notInFog = persons.filter(person => person.name.toLowerCase().includes(fog) || person.number.includes(fog))
 
     const rows = () => {
         return (
