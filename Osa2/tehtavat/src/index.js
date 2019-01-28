@@ -20,35 +20,26 @@ const Part = ({ part }) => {
 const Content = ({ content }) => {
     return (
         <>
-            {content.map(parter => <Part key={Math.random()} part={parter}/>)}
+            {content.map(parter => <Part key={Math.random()} part={parter} />)}
         </>
     )
 }
 
+
+// Hmm... eli reduce on meto
 const Total = ({ total }) => {
-    console.log(total)
-    let result = 0
-    total.map(part => result +=part.exercises).reduce(() => (result))
-    console.log(result)
-    return (
+    const exes = total.map(part => part.exercises)
 
-            // <p>yhteensä {total[0].exercises + total[1].exercises + total[2].exercises} kurssia</p>
-            <p>yhteensä {result} kurssia</p>
+    const result =  exes.reduce((joku, current, i, exes) => {
+        console.log(i)
+        console.log("curr", current)
+        console.log("joku", joku)
+        return joku + current;
+    }, 100)
+    return (
+        <p>yhteensä {result} kurssia</p>
     )
 }
-
-const Totals = ({ total }) => {
-    console.log(total)
-    let result = 0
-    total.map(part => result +=part.exercises)
-    console.log(result)
-    return (
-
-            // <p>yhteensä {total[0].exercises + total[1].exercises + total[2].exercises} kurssia</p>
-            <p>yhteensä {result} kurssia</p>
-    )
-}
-
 
 const Course = ({ course }) => {
     return (
