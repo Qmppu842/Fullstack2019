@@ -26,16 +26,10 @@ const Content = ({ content }) => {
 }
 
 
-// Hmm... eli reduce on meto
 const Total = ({ total }) => {
     const exes = total.map(part => part.exercises)
+    const result = exes.reduce((joku, current, i, exes) => joku + current)
 
-    const result =  exes.reduce((joku, current, i, exes) => {
-        console.log(i)
-        console.log("curr", current)
-        console.log("joku", joku)
-        return joku + current;
-    }, 100)
     return (
         <p>yhteensä {result} kurssia</p>
     )
@@ -52,30 +46,49 @@ const Course = ({ course }) => {
 }
 
 const App = () => {
-    const course = {
-        name: 'Half Stack -sovelluskehitys',
-        parts: [
-            {
-                name: 'Reactin perusteet',
-                exercises: 10
-            },
-            {
-                name: 'Tiedonvälitys propseilla',
-                exercises: 7
-            },
-            {
-                name: 'Komponenttien tilaa',
-                exercises: 14
-            },
-            {
-                name: 'Komponenttien tilaa',
-                exercises: 14
-            }
-        ]
-    }
+    const courses = [
+        {
+            name: 'Half Stack -sovelluskehitys',
+            parts: [
+                {
+                    name: 'Reactin perusteet',
+                    exercises: 10
+                },
+                {
+                    name: 'Tiedonvälitys propseilla',
+                    exercises: 7
+                },
+                {
+                    name: 'Komponenttien tilaa',
+                    exercises: 14
+                },
+                {
+                    name: 'Komponenttien tilaa',
+                    exercises: 14
+                }
+            ]
+        },
+        {
+            name: 'Node.js',
+            parts: [
+                {
+                    name: 'Routing',
+                    exercises: 3
+                },
+                {
+                    name: 'Middlewaret',
+                    exercises: 7
+                }
+            ]
+        }
+    ]
+
+    const coursing = () =>  courses.map(course => <Course course={course} /> )
+       
+    
     return (
         <div>
-            <Course course={course} />
+            {coursing()}
         </div>
 
     )
